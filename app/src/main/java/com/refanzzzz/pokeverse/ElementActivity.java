@@ -1,5 +1,7 @@
 package com.refanzzzz.pokeverse;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +10,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.widget.SearchView;
+
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.refanzzzz.pokeverse.model.PokemonElement;
@@ -36,6 +40,8 @@ public class ElementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_element);
 
         init();
+
+        initBackButton();
 
         getPokemonElement();
 
@@ -72,7 +78,7 @@ public class ElementActivity extends AppCompatActivity {
     }
 
     void setElementSearch() {
-        svElement.clearFocus();;
+        svElement.clearFocus();
         svElement.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -100,6 +106,21 @@ public class ElementActivity extends AppCompatActivity {
         } else {
             pokemonElementAdapterRecyclerView.setFilteredPokemonElementList(filteredElementList);
         }
+    }
+
+    void initBackButton() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     void init() {

@@ -3,8 +3,11 @@ package com.refanzzzz.pokeverse;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +39,8 @@ public class PokemonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pokemon);
 
         init();
+
+        initBackButton();
 
         getPokemonItem();
 
@@ -100,6 +105,21 @@ public class PokemonActivity extends AppCompatActivity {
         } else {
             recyclerViewAdapter.setFilteredPokemonItemList(filteredPokemonItem);
         }
+    }
+
+    void initBackButton() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     void init() {

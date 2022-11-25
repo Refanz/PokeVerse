@@ -98,13 +98,8 @@ public class PokemonElementAdapterRecyclerView extends RecyclerView.Adapter<Poke
             case "fairy":
                 setElementIcon(holder, R.drawable.ic_pokemon_type_fairy);
                 break;
-            case "unknown":
-                setElementIcon(holder, R.drawable.ic_unknown);
-                break;
-            case "shadow":
-                setElementIcon(holder, R.drawable.ic_shadow);
-                break;
             default:
+                setElementIcon(holder, R.drawable.ic_unspecified);
                 break;
         }
 
