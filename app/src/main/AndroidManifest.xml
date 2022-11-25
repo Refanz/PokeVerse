@@ -17,6 +17,9 @@
         android:theme="@style/Theme.TA_PPPB"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ElementActivity"
             android:exported="false" />
         <activity
@@ -27,7 +30,7 @@
             android:name=".DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".PokemonActivity"
             android:exported="false" />
         <activity
             android:name=".SplashscreenActivity"
