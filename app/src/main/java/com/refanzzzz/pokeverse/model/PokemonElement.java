@@ -4,16 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PokemonData {
+public class PokemonElement {
 
     @SerializedName("count")
     private int count;
-    @SerializedName("next")
-    private String nextUrl;
-    @SerializedName("previous")
-    private String previousUrl;
     @SerializedName("results")
-    private List<Data> results;
+    private List<Element> results;
 
     public int getCount() {
         return count;
@@ -23,41 +19,23 @@ public class PokemonData {
         this.count = count;
     }
 
-    public String getNextUrl() {
-        return nextUrl;
-    }
-
-    public void setNextUrl(String nextUrl) {
-        this.nextUrl = nextUrl;
-    }
-
-    public String getPreviousUrl() {
-        return previousUrl;
-    }
-
-    public void setPreviousUrl(String previousUrl) {
-        this.previousUrl = previousUrl;
-    }
-
-    public List<Data> getResults() {
+    public List<Element> getResults() {
         return results;
     }
 
-    public void setResult(List<Data> results) {
+    public void setResults(List<Element> results) {
         this.results = results;
     }
 
     @Override
     public String toString() {
-        return "PokemonData{" +
+        return "PokemonElement{" +
                 "count=" + count +
-                ", nextUrl='" + nextUrl + '\'' +
-                ", previousUrl='" + previousUrl + '\'' +
-                ", result=" + results +
+                ", results=" + results +
                 '}';
     }
 
-    public class Data {
+    public class Element {
 
         @SerializedName("name")
         private String name;
@@ -82,7 +60,7 @@ public class PokemonData {
 
         @Override
         public String toString() {
-            return "Data{" +
+            return "ELement{" +
                     "name='" + name + '\'' +
                     ", url='" + url + '\'' +
                     '}';

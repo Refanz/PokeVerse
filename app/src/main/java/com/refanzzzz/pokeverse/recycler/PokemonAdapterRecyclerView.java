@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.refanzzzz.pokeverse.R;
 import com.refanzzzz.pokeverse.model.PokemonAttribute;
-import com.refanzzzz.pokeverse.model.PokemonItem;
+import com.refanzzzz.pokeverse.model.PokemonData;
 import com.refanzzzz.pokeverse.model.PokemonType;
 import com.refanzzzz.pokeverse.retrofit.ApiService;
 import com.refanzzzz.pokeverse.util.Util;
@@ -28,15 +28,15 @@ import retrofit2.Response;
 
 public class PokemonAdapterRecyclerView extends RecyclerView.Adapter<PokemonAdapterRecyclerView.ViewHolder> {
 
-    private List<PokemonItem> pokemonItemList;
+    private List<PokemonData.Data> pokemonItemList;
     private final Context context;
 
-    public PokemonAdapterRecyclerView(Context context, List<PokemonItem> pokemonItemList) {
+    public PokemonAdapterRecyclerView(Context context, List<PokemonData.Data> pokemonItemList) {
         this.pokemonItemList = pokemonItemList;
         this.context = context;
     }
 
-    public void setFilteredPokemonItemList(List<PokemonItem> filteredPokemonItemList) {
+    public void setFilteredPokemonItemList(List<PokemonData.Data> filteredPokemonItemList) {
         this.pokemonItemList = filteredPokemonItemList;
         notifyDataSetChanged();
     }
@@ -55,7 +55,8 @@ public class PokemonAdapterRecyclerView extends RecyclerView.Adapter<PokemonAdap
 
     @Override
     public int getItemCount() {
-        return pokemonItemList.size();
+        if (pokemonItemList != null) return pokemonItemList.size();
+        return 0;
     }
 
     private void getDataPokemon(PokemonAdapterRecyclerView.ViewHolder holder, int position) {
@@ -217,9 +218,9 @@ public class PokemonAdapterRecyclerView extends RecyclerView.Adapter<PokemonAdap
                             break;
                     }
 
-                    holder.txtPokemonId.setText("#" + String.valueOf(pokemonId));
+                    holder.txtPokemonId.setText("#" + pokemonId);
                     holder.txtPokemonName.setText(Util.capitalize(pokemonName));
-                    holder.txtPokemonWeight.setText(String.valueOf(pokemonWeight) + "kg");
+                    holder.txtPokemonWeight.setText(pokemonWeight + "kg");
                     Glide.with(context).load(pokemonUrlIcon).into(holder.ivPokemonIcon);
                 }
             }

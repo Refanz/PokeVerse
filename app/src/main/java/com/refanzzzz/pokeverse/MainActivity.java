@@ -1,14 +1,8 @@
 package com.refanzzzz.pokeverse;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +10,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.refanzzzz.pokeverse.model.PokemonAttribute;
 import com.refanzzzz.pokeverse.model.PokemonData;
-import com.refanzzzz.pokeverse.model.PokemonItem;
 import com.refanzzzz.pokeverse.recycler.PokemonAdapterRecyclerView;
 import com.refanzzzz.pokeverse.retrofit.ApiService;
 
@@ -34,10 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     private Context context;
     private RecyclerView recyclerView;
-    private List<PokemonItem> pokemonItemList;
+    private List<PokemonData.Data> pokemonItemList;
     private SearchView svPokemon;
     private PokemonAdapterRecyclerView recyclerViewAdapter;
-    private EditText svPokemonSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
         setPokemonSearch();
     }
 
-    private void initRecyclerView(List<PokemonItem> pokemonItemList) {
+    void initRecyclerView(List<PokemonData.Data> pokemonItemList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
         recyclerViewAdapter = new PokemonAdapterRecyclerView(context, pokemonItemList);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
-    private void getPokemonItem() {
+    void getPokemonItem() {
         ApiService.getService().getList().enqueue(new Callback<PokemonData>() {
             @Override
             public void onResponse(Call<PokemonData> call, Response<PokemonData> response) {
@@ -75,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<PokemonData> call, Throwable t) {
-
+                Log.d(TAG, t.getMessage());
             }
         });
     }
 
-    private void setPokemonSearch() {
+    void setPokemonSearch() {
         svPokemon.clearFocus();
         svPokemon.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -96,9 +87,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void filterPokemonList(String text) {
-        List<PokemonItem> filteredPokemonItem = new ArrayList<>();
-        for (PokemonItem item : pokemonItemList) {
+    void filterPokemonList(String text) {
+        List<PokemonData.Data> filteredPokemonItem = new ArrayList<>();
+        for (PokemonData.Data item : pokemonItemList) {
             if (item.getName().toLowerCase().contains(text.toLowerCase())) {
                 filteredPokemonItem.add(item);
             }
@@ -111,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void init() {
+    void init() {
         context = getApplicationContext();
         recyclerView = findViewById(R.id.rv_pokemon);
         svPokemon = findViewById(R.id.sv_pokemon_search);

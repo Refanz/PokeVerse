@@ -5,20 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ElementActivity">
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/sv_pokemon_search"
+        android:id="@+id/sv_element_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        app:queryHint="Search pokemon by name..."
         app:iconifiedByDefault="false"
-        app:queryHint="Search pokemon by name..." />
+        android:inputType="text"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_pokemon"
+        android:id="@+id/rv_element"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_item" />
+        tools:listitem="@layout/element_list_item" />
 
 </LinearLayout>
