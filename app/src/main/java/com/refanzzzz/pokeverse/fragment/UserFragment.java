@@ -2,65 +2,100 @@ package com.refanzzzz.pokeverse.fragment;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 
+import android.os.Debug;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.refanzzzz.pokeverse.R;
+import com.refanzzzz.pokeverse.model.GithubData;
+import com.refanzzzz.pokeverse.retrofit.ApiService;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link UserFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class UserFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public UserFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UserFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UserFragment newInstance(String param1, String param2) {
-        UserFragment fragment = new UserFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private View view;
+    private CircleImageView ivUser;
+    private AppCompatTextView tvFollowers, tvFollowing, tvGithubName, tvBio, tvLocation,
+            tvRepository, tvTwitterUsername, tvBlog;
+    private static final String TAG = "UserFragment";
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        view =  inflater.inflate(R.layout.fragment_user, container, false);
+
+        hideActionBar();
+
+        init();
+
+        getDataGithub();
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+    void getDataGithub() {
+        ApiService.getService2().getGithub().enqueue(new Callback<GithubData>() {
+            @Override
+            public void onResponse(Call<GithubData> call, Response<GithubData> response) {
+               if(response.body() != null) {
+                   try {
+                       String name = response.body().getName();
+                       String avatar = response.body().getAvatar();
+                       String bio = response.body().getBio();
+                       int followers = response.body().getFollowers();
+                       int following = response.body().getFollowing();
+                       String location = response.body().getLocation();
+                       int repository = response.body().getPublicRepos();
+                       String twitterUsername = response.body().getTwitterUsername();
+                       String blog = response.body().getBlog();
+
+                       Glide.with(view.getContext()).load(avatar).into(ivUser);
+                       tvGithubName.setText(name);
+                       tvBio.setText(bio);
+                       tvFollowers.setText(String.valueOf(followers));
+                       tvFollowing.setText(String.valueOf(following));
+                       tvLocation.setText(location);
+                       tvRepository.setText(String.valueOf(repository));
+                       tvTwitterUsername.setText(twitterUsername);
+                       tvBlog.setText(blog);
+                   } catch (Exception e) {
+                       Log.d(TAG, e.getMessage());
+                   }
+               }
+            }
+
+            @Override
+            public void onFailure(Call<GithubData> call, Throwable t) {
+                Log.d(TAG, t.getMessage());
+            }
+        });
+    }
+
+    void hideActionBar() {
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+    }
+
+    void init() {
+        ivUser = view.findViewById(R.id.iv_avatar);
+        tvFollowers = view.findViewById(R.id.tv_followers);
+        tvFollowing = view.findViewById(R.id.tv_following);
+        tvGithubName = view.findViewById(R.id.tv_github_name);
+        tvBio = view.findViewById(R.id.tv_bio);
+        tvLocation = view.findViewById(R.id.tv_github_location);
+        tvRepository = view.findViewById(R.id.tv_github_repository);
+        tvTwitterUsername = view.findViewById(R.id.tv_github_twitter);
+        tvBlog = view.findViewById(R.id.tv_github_blog);
     }
 }

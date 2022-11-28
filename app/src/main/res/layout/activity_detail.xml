@@ -1,9 +1,341 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".DetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                style="@style/cardview_style"
+                android:layout_gravity="center_horizontal"
+                app:cardCornerRadius="100dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivd_avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_bulbasaur" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvd_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:background="@drawable/border_bottom"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:text="Bulbasaur" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@drawable/border_bottom">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivd_type_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_pokemon_type_grass" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivd_type_2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toLeftOf="@id/ivd_type_1"
+                    android:src="@drawable/ic_pokemon_type_poison" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1">
+
+                <TableRow>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="100dp"
+                        android:textColor="@color/black"
+                        android:text="Height" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvd_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="100 m" />
+                </TableRow>
+
+                <TableRow>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="100dp"
+                        android:textColor="@color/black"
+                        android:text="Weight" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvd_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="100 kg" />
+                </TableRow>
+
+                <TableRow>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="100dp"
+                        android:textColor="@color/black"
+                        android:text="Abilities" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvd_ability"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="Blaze, Fire Power (Hidden)" />
+                </TableRow>
+            </TableLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:text="Base Stats"/>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="2">
+
+                <TableRow android:layout_marginBottom="10dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/black"
+                        android:text="HP" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvd_stat_hp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginRight="50dp"
+                        android:textColor="@color/black"
+                        android:text="20" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapProgressBar
+                        android:id="@+id/pb_stat_hp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:bootstrapSize="sm"
+                        app:bootstrapBrand="success"
+                        app:bootstrapProgress="20"
+                        app:striped="true"/>
+
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="10dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/black"
+                        android:text="Attack" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvd_stat_attack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginRight="50dp"
+                        android:textColor="@color/black"
+                        android:text="30" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapProgressBar
+                        android:id="@+id/pb_stat_attack"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:bootstrapSize="sm"
+                        app:bootstrapBrand="success"
+                        app:bootstrapProgress="30"
+                        app:striped="true"/>
+
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="10dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/black"
+                        android:text="Defense" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvd_stat_defense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginRight="50dp"
+                        android:textColor="@color/black"
+                        android:text="40" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapProgressBar
+                        android:id="@+id/pb_stat_defense"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:bootstrapSize="sm"
+                        app:bootstrapBrand="success"
+                        app:bootstrapProgress="40"
+                        app:striped="true"/>
+
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="10dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/black"
+                        android:text="Sp. Atk" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvd_stat_sp_attack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginRight="50dp"
+                        android:textColor="@color/black"
+                        android:text="56" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapProgressBar
+                        android:id="@+id/pb_stat_sp_attack"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:bootstrapSize="sm"
+                        app:bootstrapBrand="success"
+                        app:bootstrapProgress="56"
+                        app:striped="true"/>
+
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="10dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/black"
+                        android:text="Sp. Def" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvd_stat_sp_defense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginRight="50dp"
+                        android:textColor="@color/black"
+                        android:text="45" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapProgressBar
+                        android:id="@+id/pb_stat_sp_defense"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:bootstrapSize="sm"
+                        app:bootstrapBrand="success"
+                        app:bootstrapProgress="45"
+                        app:striped="true"/>
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="10dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/black"
+                        android:text="Speed" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvd_stat_speed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginRight="50dp"
+                        android:textColor="@color/black"
+                        android:text="67" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapProgressBar
+                        android:id="@+id/pb_stat_speed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:bootstrapSize="sm"
+                        app:bootstrapBrand="success"
+                        app:bootstrapProgress="67"
+                        app:striped="true"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

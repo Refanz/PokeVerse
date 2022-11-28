@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">TA_PPPB</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="items">Items</string>
+    <string name="abilities">Abilities</string>
+    <string name="types">Types</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="user">User</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
 </resources>

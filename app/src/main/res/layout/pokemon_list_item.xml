@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nama: Bulbasaur"
-                android:fontFamily="@font/pokemon_solid"
+                android:textStyle="bold"
                 android:textSize="15sp"
                 android:textColor="@color/black" />
 
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Berat: 20g"
-                android:fontFamily="@font/pokemon_solid"
+                android:textStyle="bold"
                 android:textSize="15sp"
                 android:textColor="@color/black" />
 

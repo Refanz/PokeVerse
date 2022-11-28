@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TA_PPPB</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="items">Item</string>
+    <string name="abilities">Kemampuan</string>
+    <string name="types">Tipe</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="user">Pengguna</string>
+    <string name="home">Rumah</string>
+    <string name="settings">Pengaturan</string>
+    <string name="language">Bahasa</string>
+    <string name="english">Bahasa Inggris</string>
+</resources>

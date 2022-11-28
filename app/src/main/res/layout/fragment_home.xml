@@ -70,7 +70,7 @@
 
                     <TextView
                         style="@style/textview_style"
-                        android:text="Items" />
+                        android:text="@string/items" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -90,7 +90,7 @@
 
                     <TextView
                         style="@style/textview_style"
-                        android:text="Abilities" />
+                        android:text="@string/abilities" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -110,27 +110,7 @@
 
                     <TextView
                         style="@style/textview_style"
-                        android:text="Types" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView style="@style/cardview_style">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_move"
-                        style="@style/imageview_style"
-                        android:src="@drawable/ic_tornado" />
-
-                    <TextView
-                        style="@style/textview_style"
-                        android:text="Moves" />
+                        android:text="@string/types" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

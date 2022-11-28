@@ -1,6 +1,7 @@
 package com.refanzzzz.pokeverse;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.refanzzzz.pokeverse.model.PokemonData;
+import com.refanzzzz.pokeverse.model.PokemonDetail;
 import com.refanzzzz.pokeverse.recycler.PokemonAdapterRecyclerView;
 import com.refanzzzz.pokeverse.retrofit.ApiService;
 
@@ -52,6 +54,15 @@ public class PokemonActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerViewAdapter = new PokemonAdapterRecyclerView(context, pokemonItemList);
         recyclerView.setAdapter(recyclerViewAdapter);
+
+        recyclerViewAdapter.setOnItemClickCallBack(new PokemonAdapterRecyclerView.OnItemClickCallBack() {
+            @Override
+            public void onItemClicked(PokemonData.Data pokemonDetail) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("POKEMON_NAME_ID", pokemonDetail.getName());
+                startActivity(intent);
+            }
+        });
     }
 
     void getPokemonItem() {

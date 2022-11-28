@@ -1,6 +1,7 @@
 package com.refanzzzz.pokeverse.recycler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.refanzzzz.pokeverse.R;
-import com.refanzzzz.pokeverse.model.PokemonAttribute;
+import com.refanzzzz.pokeverse.model.PokemonDetail;
 import com.refanzzzz.pokeverse.model.PokemonData;
 import com.refanzzzz.pokeverse.model.PokemonType;
 import com.refanzzzz.pokeverse.retrofit.ApiService;
@@ -30,6 +31,7 @@ public class PokemonAdapterRecyclerView extends RecyclerView.Adapter<PokemonAdap
 
     private List<PokemonData.Data> pokemonItemList;
     private final Context context;
+    private OnItemClickCallBack onItemClickCallBack;
 
     public PokemonAdapterRecyclerView(Context context, List<PokemonData.Data> pokemonItemList) {
         this.pokemonItemList = pokemonItemList;
@@ -44,7 +46,7 @@ public class PokemonAdapterRecyclerView extends RecyclerView.Adapter<PokemonAdap
     @NonNull
     @Override
     public PokemonAdapterRecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.pokemon_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -60,9 +62,9 @@ public class PokemonAdapterRecyclerView extends RecyclerView.Adapter<PokemonAdap
     }
 
     private void getDataPokemon(PokemonAdapterRecyclerView.ViewHolder holder, int position) {
-        ApiService.getService().getAttribute(pokemonItemList.get(position).getName()).enqueue(new Callback<PokemonAttribute>() {
+        ApiService.getService().getAttribute(pokemonItemList.get(position).getName()).enqueue(new Callback<PokemonDetail>() {
             @Override
-            public void onResponse(Call<PokemonAttribute> call, Response<PokemonAttribute> response) {
+            public void onResponse(Call<PokemonDetail> call, Response<PokemonDetail> response) {
                 if (response.body() != null) {
                     int pokemonId = response.body().getId();
                     String pokemonName = response.body().getName();
@@ -222,14 +224,29 @@ public class PokemonAdapterRecyclerView extends RecyclerView.Adapter<PokemonAdap
                     holder.txtPokemonName.setText(Util.capitalize(pokemonName));
                     holder.txtPokemonWeight.setText(pokemonWeight + "kg");
                     Glide.with(context).load(pokemonUrlIcon).into(holder.ivPokemonIcon);
+
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onItemClickCallBack.onItemClicked(pokemonItemList.get(holder.getAdapterPosition()));
+                        }
+                    });
                 }
             }
 
             @Override
-            public void onFailure(Call<PokemonAttribute> call, Throwable t) {
-
+            public void onFailure(Call<PokemonDetail> call, Throwable t) {
+                System.out.println(t.getMessage().toString());
             }
         });
+    }
+
+    public interface OnItemClickCallBack {
+        void onItemClicked(PokemonData.Data pokemonDetail);
+    }
+
+    public void setOnItemClickCallBack(OnItemClickCallBack onItemClickCallBack) {
+        this.onItemClickCallBack = onItemClickCallBack;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

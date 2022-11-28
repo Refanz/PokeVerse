@@ -95,6 +95,7 @@ public class ElementActivity extends AppCompatActivity {
 
     void filterElementList(String text) {
         List<PokemonElement.Element> filteredElementList = new ArrayList<>();
+
         for(PokemonElement.Element element : pokemonElementList) {
             if(element.getName().toLowerCase().contains(text.toLowerCase())) {
                 filteredElementList.add(element);
@@ -115,10 +116,9 @@ public class ElementActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
