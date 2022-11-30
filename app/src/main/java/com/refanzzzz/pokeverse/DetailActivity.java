@@ -1,18 +1,26 @@
 package com.refanzzzz.pokeverse;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.beardedhen.androidbootstrap.BootstrapProgressBar;
+import com.bumptech.glide.Glide;
 import com.refanzzzz.pokeverse.model.PokemonDetail;
+import com.refanzzzz.pokeverse.model.PokemonType;
 import com.refanzzzz.pokeverse.retrofit.ApiService;
+import com.refanzzzz.pokeverse.util.Util;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,14 +28,14 @@ import retrofit2.Response;
 
 public class DetailActivity extends AppCompatActivity {
 
+    private final static String TAG = "DetailActivity";
+    private Context context;
     private AppCompatImageView ivdAvatar, ivdType1, ivdType2;
     private AppCompatTextView tvdName, tvdHeight, tvdWeight, tvdAbilities, tvdStatHP, tvdStatAttack,
             tvdStatDefense, tvdStatSpAttack, tvdStatSpDefense, tvdStatSpeed;
     private BootstrapProgressBar pbStatHP, pbStatDefense, pbStatAttack,
             pbStatSpAttack, pbStatSpDefense, pbStatSpeed;
-
     private String pokemonNameIntent = "";
-    private final static String TAG = "DetailActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,8 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         init();
+
+        setActionBarTitle();
 
         initBackButton();
 
@@ -53,9 +63,156 @@ public class DetailActivity extends AppCompatActivity {
             public void onResponse(Call<PokemonDetail> call, Response<PokemonDetail> response) {
                 if (response.body() != null) {
                     try {
-                        tvdName.setText(response.body().getName());
-                    } catch (Exception e) {
+                        String name = response.body().getName();
+                        double height = response.body().getHeight() / (double) 10;
+                        double weight = response.body().getWeight() / (double) 10;
+                        int totalType = response.body().getPokemonTypeList().size();
+                        List<PokemonType.Type> pokemonType = new ArrayList<>();
+                        String type1 = "";
+                        String type2 = "";
+                        String avatar = response.body().getPokemonSpriteList().getFrontDefault();
 
+                        for (int i = 0; i < totalType; i++) {
+                            pokemonType.add(response.body().getPokemonTypeList().get(i).getType());
+                            System.out.println(pokemonType.toString());
+                        }
+
+                        if (totalType == 1) {
+                            type1 = pokemonType.get(0).getName();
+                            ivdType2.setVisibility(View.GONE);
+                            System.out.println(type1);
+                        } else {
+                            type1 = pokemonType.get(0).getName();
+                            type2 = pokemonType.get(1).getName();
+                        }
+
+                        switch (type1) {
+                            case "normal":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_normal);
+                                break;
+                            case "fighting":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_fighting);
+                                break;
+                            case "flying":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_flying);
+                                break;
+                            case "poison":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_poison);
+                                break;
+                            case "ground":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_ground);
+                                break;
+                            case "rock":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_rock);
+                                break;
+                            case "bug":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_bug);
+                                break;
+                            case "ghost":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_ghost);
+                                break;
+                            case "steel":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_steel);
+                                break;
+                            case "fire":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_fire);
+                                break;
+                            case "water":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_water);
+                                break;
+                            case "grass":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_grass);
+                                break;
+                            case "electric":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_electric);
+                                break;
+                            case "psychic":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_psychic);
+                                break;
+                            case "ice":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_ice);
+                                break;
+                            case "dragon":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_dragon);
+                                ;
+                                break;
+                            case "dark":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_dark);
+                                break;
+                            case "fairy":
+                                setElementIcon(ivdType1, R.drawable.ic_pokemon_type_fairy);
+                                break;
+                            default:
+                                setElementIcon(ivdType1, R.drawable.ic_unspecified);
+                                break;
+                        }
+
+                        switch (type2) {
+                            case "normal":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_normal);
+                                break;
+                            case "fighting":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_fighting);
+                                break;
+                            case "flying":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_flying);
+                                break;
+                            case "poison":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_poison);
+                                break;
+                            case "ground":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_ground);
+                                break;
+                            case "rock":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_rock);
+                                break;
+                            case "bug":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_bug);
+                                break;
+                            case "ghost":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_ghost);
+                                break;
+                            case "steel":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_steel);
+                                break;
+                            case "fire":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_fire);
+                                break;
+                            case "water":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_water);
+                                break;
+                            case "grass":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_grass);
+                                break;
+                            case "electric":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_electric);
+                                break;
+                            case "psychic":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_psychic);
+                                break;
+                            case "ice":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_ice);
+                                break;
+                            case "dragon":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_dragon);
+                                break;
+                            case "dark":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_dark);
+                                break;
+                            case "fairy":
+                                setElementIcon(ivdType2, R.drawable.ic_pokemon_type_fairy);
+                                break;
+                            default:
+                                setElementIcon(ivdType2, R.drawable.ic_unspecified);
+                                break;
+                        }
+
+                        tvdName.setText(Util.capitalize(name));
+                        tvdHeight.setText(String.valueOf(height) + " m");
+                        tvdWeight.setText(String.valueOf(weight) + " kg");
+                        Glide.with(context).load(avatar).into(ivdAvatar);
+                    } catch (Exception e) {
+                        Log.d(TAG, e.getMessage().toString());
                     }
                 }
             }
@@ -67,9 +224,18 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 
-    void initBackButton() {
+    private void setElementIcon(AppCompatImageView view, int icon) {
+        Glide.with(context).load(icon).into(view);
+    }
+
+    private void initBackButton() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void setActionBarTitle() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Pokemon Detail");
     }
 
     @Override
@@ -83,6 +249,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     void init() {
+        context = getApplicationContext();
         tvdName = findViewById(R.id.tvd_name);
         ivdAvatar = findViewById(R.id.ivd_avatar);
         ivdType1 = findViewById(R.id.ivd_type_1);

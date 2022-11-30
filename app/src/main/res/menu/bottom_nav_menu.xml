@@ -11,9 +11,4 @@
         android:title="@string/user"
         android:icon="@drawable/ic_user"/>
 
-    <item
-        android:id="@+id/i_settings"
-        android:title="@string/settings"
-        android:icon="@drawable/ic_settings"/>
-
 </menu>

@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:columnCount="3">
+            android:columnCount="2">
 
             <androidx.cardview.widget.CardView style="@style/cardview_style">
 
@@ -50,7 +50,7 @@
 
                     <TextView
                         style="@style/textview_style"
-                        android:text="Pokedex" />
+                        android:text="@string/pokedex" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -116,5 +116,4 @@
             </androidx.cardview.widget.CardView>
         </GridLayout>
     </LinearLayout>
-
 </FrameLayout>

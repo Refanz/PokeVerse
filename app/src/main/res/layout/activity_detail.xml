@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -26,8 +27,7 @@
                     android:id="@+id/ivd_avatar"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_bulbasaur" />
+                    android:padding="5dp" />
 
             </androidx.cardview.widget.CardView>
 
@@ -37,32 +37,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="20sp"
+                android:fontFamily="@font/pokemon_solid"
                 android:background="@drawable/border_bottom"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textAlignment="center"
-                android:text="Bulbasaur" />
+                android:text="" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_marginBottom="10dp"
+                android:text="@string/type" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
+                android:gravity="center_horizontal"
                 android:background="@drawable/border_bottom">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivd_type_1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_pokemon_type_grass" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivd_type_2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_toLeftOf="@id/ivd_type_1"
-                    android:src="@drawable/ic_pokemon_type_poison" />
+                    android:layout_toRightOf="@id/ivd_type_1" />
 
             </RelativeLayout>
 
@@ -89,7 +100,7 @@
                         android:textStyle="bold"
                         android:layout_marginRight="100dp"
                         android:textColor="@color/black"
-                        android:text="Height" />
+                        android:text="@string/height" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvd_height"
@@ -109,7 +120,7 @@
                         android:textStyle="bold"
                         android:layout_marginRight="100dp"
                         android:textColor="@color/black"
-                        android:text="Weight" />
+                        android:text="@string/weight" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvd_weight"
@@ -130,7 +141,7 @@
                         android:textStyle="bold"
                         android:layout_marginRight="100dp"
                         android:textColor="@color/black"
-                        android:text="Abilities" />
+                        android:text="@string/abilities" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvd_ability"
@@ -150,7 +161,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:text="Base Stats"/>
+                android:text="@string/base_stats"/>
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -166,7 +177,7 @@
                         android:textStyle="bold"
                         android:layout_marginRight="20dp"
                         android:textColor="@color/black"
-                        android:text="HP" />
+                        android:text="@string/hp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvd_stat_hp"
@@ -183,8 +194,7 @@
                         android:layout_height="wrap_content"
                         app:bootstrapSize="sm"
                         app:bootstrapBrand="success"
-                        app:bootstrapProgress="20"
-                        app:striped="true"/>
+                        app:bootstrapProgress="20" />
 
                 </TableRow>
 
@@ -196,7 +206,7 @@
                         android:textStyle="bold"
                         android:layout_marginRight="20dp"
                         android:textColor="@color/black"
-                        android:text="Attack" />
+                        android:text="@string/attack" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvd_stat_attack"
@@ -213,8 +223,7 @@
                         android:layout_height="wrap_content"
                         app:bootstrapSize="sm"
                         app:bootstrapBrand="success"
-                        app:bootstrapProgress="30"
-                        app:striped="true"/>
+                        app:bootstrapProgress="30"/>
 
                 </TableRow>
 
@@ -226,7 +235,7 @@
                         android:textStyle="bold"
                         android:layout_marginRight="20dp"
                         android:textColor="@color/black"
-                        android:text="Defense" />
+                        android:text="@string/defense" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvd_stat_defense"
@@ -243,8 +252,7 @@
                         android:layout_height="wrap_content"
                         app:bootstrapSize="sm"
                         app:bootstrapBrand="success"
-                        app:bootstrapProgress="40"
-                        app:striped="true"/>
+                        app:bootstrapProgress="40" />
 
                 </TableRow>
 
@@ -256,7 +264,7 @@
                         android:textStyle="bold"
                         android:layout_marginRight="20dp"
                         android:textColor="@color/black"
-                        android:text="Sp. Atk" />
+                        android:text="@string/sp_atk" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvd_stat_sp_attack"
@@ -273,8 +281,7 @@
                         android:layout_height="wrap_content"
                         app:bootstrapSize="sm"
                         app:bootstrapBrand="success"
-                        app:bootstrapProgress="56"
-                        app:striped="true"/>
+                        app:bootstrapProgress="56" />
 
                 </TableRow>
 
@@ -286,7 +293,7 @@
                         android:textStyle="bold"
                         android:layout_marginRight="20dp"
                         android:textColor="@color/black"
-                        android:text="Sp. Def" />
+                        android:text="@string/sp_def" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvd_stat_sp_defense"
@@ -303,8 +310,7 @@
                         android:layout_height="wrap_content"
                         app:bootstrapSize="sm"
                         app:bootstrapBrand="success"
-                        app:bootstrapProgress="45"
-                        app:striped="true"/>
+                        app:bootstrapProgress="45" />
                 </TableRow>
 
                 <TableRow android:layout_marginBottom="10dp">
@@ -315,7 +321,7 @@
                         android:textStyle="bold"
                         android:layout_marginRight="20dp"
                         android:textColor="@color/black"
-                        android:text="Speed" />
+                        android:text="@string/speed" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvd_stat_speed"
@@ -332,8 +338,7 @@
                         android:layout_height="wrap_content"
                         app:bootstrapSize="sm"
                         app:bootstrapBrand="success"
-                        app:bootstrapProgress="67"
-                        app:striped="true"/>
+                        app:bootstrapProgress="67" />
                 </TableRow>
             </TableLayout>
         </LinearLayout>

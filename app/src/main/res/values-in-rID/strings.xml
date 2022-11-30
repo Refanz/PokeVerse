@@ -8,7 +8,18 @@
     <string name="following">Mengikuti</string>
     <string name="user">Pengguna</string>
     <string name="home">Rumah</string>
-    <string name="settings">Pengaturan</string>
-    <string name="language">Bahasa</string>
-    <string name="english">Bahasa Inggris</string>
+    <string name="height">Tinggi</string>
+    <string name="weight">Berat</string>
+    <string name="base_stats">Statistik Dasar</string>
+    <string name="hp">HP</string>
+    <string name="attack">Serangan</string>
+    <string name="defense">Pertahanan</string>
+    <string name="sp_atk">Sp. Serangan</string>
+    <string name="sp_def">Sp. Pertahanan</string>
+    <string name="speed">Kecepatan</string>
+    <string name="type">Tipe</string>
+    <string name="search_element">Mencari kekuatan dengan nama...</string>
+    <string name="search_item">Mencari item dengan nama...</string>
+    <string name="search_pokemon">Mencari pokemon dengan nama...</string>
+    <string name="pokedex">Pokedex</string>
 </resources>

@@ -1,19 +1,19 @@
 package com.refanzzzz.pokeverse;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationBarView;
 import com.refanzzzz.pokeverse.databinding.ActivityMainBinding;
 import com.refanzzzz.pokeverse.fragment.HomeFragment;
-import com.refanzzzz.pokeverse.fragment.SettingsFragment;
 import com.refanzzzz.pokeverse.fragment.UserFragment;
+import com.refanzzzz.pokeverse.shared_preferences.SharedPrefConfig;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.i_user:
                     replaceFragment(new UserFragment());
-                    break;
-                case R.id.i_settings:
-                    replaceFragment(new SettingsFragment());
                     break;
             }
 

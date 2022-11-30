@@ -47,11 +47,11 @@ public class AbilityActivity extends AppCompatActivity {
 
         init();
 
+        setActionBarTitle();
+
         initBackButton();
 
         getPokemonAbility();
-
-        getPokemonAbilityDetail();
 
         setAbilitySearch();
     }
@@ -117,38 +117,6 @@ public class AbilityActivity extends AppCompatActivity {
         });
     }
 
-    private void getPokemonAbilityDetail() {
-        List<PokemonAbility.AbilityDetail> abilityDetailList = new ArrayList<>();
-
-        for (PokemonAbility.Ability ability : SharedPrefConfig.getListFromSharedPref(this)) {
-            ApiService.getService().getAbility(ability.getName()).enqueue(new Callback<PokemonAbility.AbilityDetail>() {
-                @Override
-                public void onResponse(Call<PokemonAbility.AbilityDetail> call, Response<PokemonAbility.AbilityDetail> response) {
-                    if(response.body() != null) {
-                        try {
-                            int id = response.body().getId();
-                            String abilityName = response.body().getName();
-
-                            abilityDetailList.add(new PokemonAbility.AbilityDetail(id, abilityName));
-
-                            if(SharedPrefConfig.getCountAbilityInPref(getApplicationContext()) == abilityDetailList.size()) {
-                                //initRecyclerView(abilityDetailList);
-                            }
-
-                        } catch (Exception e) {
-                            Log.d(TAG, e.getMessage().toString());
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<PokemonAbility.AbilityDetail> call, Throwable t) {
-                    Log.d(TAG, t.getMessage().toString());
-                }
-            });
-        }
-    }
-
     private void initBackButton() {
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
@@ -162,6 +130,11 @@ public class AbilityActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setActionBarTitle() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Pokemon Ability");
     }
 
     private void init() {

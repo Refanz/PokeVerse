@@ -41,6 +41,8 @@ public class ItemActivity extends AppCompatActivity {
 
         init();
 
+        setActionBarTitle();
+
         initBackButton();
 
         getPokemonItem();
@@ -121,6 +123,11 @@ public class ItemActivity extends AppCompatActivity {
     private void initBackButton() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void setActionBarTitle() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Pokemon Item");
     }
 
     private void init() {

@@ -11,7 +11,7 @@
         android:id="@+id/sv_element_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:queryHint="Search element by name..."
+        app:queryHint="@string/search_element"
         app:iconifiedByDefault="false"
         android:inputType="text"/>
 

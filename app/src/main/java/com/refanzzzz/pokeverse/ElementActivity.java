@@ -41,6 +41,8 @@ public class ElementActivity extends AppCompatActivity {
 
         init();
 
+        setActionBarTitle();
+
         initBackButton();
 
         getPokemonElement();
@@ -121,6 +123,11 @@ public class ElementActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setActionBarTitle() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Pokemon Element");
     }
 
     void init() {
